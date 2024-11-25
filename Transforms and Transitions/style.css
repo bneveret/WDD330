@@ -1,0 +1,31 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+.box {
+    width: 200px;
+    height: 150px;
+    background-color: #be2121;
+    border-radius: 50% 0 0 50%;
+    transform: skewX(20deg);
+    animation: myanima 6s infinite alternate;
+}
+
+@keyframes myanima {
+    0% {
+      transform: scale(1);
+      box-shadow: none;
+    }
+    50% {
+      transform: rotate(360deg) scale(1.5);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    100% {
+      transform: scale(0.5) skewX(20deg);
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.8);
+    }
+  }
