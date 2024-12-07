@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Geolocation</h2>
+
+<p>Click the button to get your coordinates.</p>
+
+<button onclick="getLocation()">Try It</button>
+
+<p id="demo"></p>
+
+<iframe id="map"></iframe>
+
+<script>
+const x = document.getElementById("demo");
+iframe = document.getElementById("map");
+
+function getLocation() {
+  try {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } catch {
+    x.innerHTML = err;
+  }
+}
+
+function showPosition(position) {
+  x.innerHTML = "Latitude: " + position.coords.latitude + 
+  "<br>Longitude: " + position.coords.longitude;
+  iframe.src = "https://maps.google.com/maps?q=" + position.coords.latitude + "," + position.coords.longitude + "&t=&z=15&ie=UTF8&iwloc=&output=embed";
+}
+
+</script>
+
+</body>
+</html>
