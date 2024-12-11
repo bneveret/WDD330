@@ -1,4 +1,3 @@
-// Fetch and display saved monsters
 function displaySavedMonsters() {
     const savedMonsters = JSON.parse(localStorage.getItem('savedMonsters')) || [];
     const savedMonstersResult = document.getElementById('savedMonstersResult');
@@ -62,16 +61,14 @@ function displaySavedMonsters() {
   function getMonsterImageUrl(imagePath) {
     const baseImageUrl = 'https://www.dnd5eapi.co';
     
-    // If the image path is not fully qualified, prepend the base URL
     return imagePath && !imagePath.startsWith('http') ? baseImageUrl + imagePath : imagePath;
   }
 
   function removeMonsterFromList(monsterIndex) {
     let savedMonsters = JSON.parse(localStorage.getItem('savedMonsters')) || [];
-    savedMonsters = savedMonsters.filter(monster => monster.index !== monsterIndex); // Remove the monster
-    localStorage.setItem('savedMonsters', JSON.stringify(savedMonsters)); // Update local storage
-    displaySavedMonsters(); // Refresh the saved monsters display
+    savedMonsters = savedMonsters.filter(monster => monster.index !== monsterIndex);
+    localStorage.setItem('savedMonsters', JSON.stringify(savedMonsters));
+    displaySavedMonsters();
   }
 
-  // Call the function when the page loads
   displaySavedMonsters();

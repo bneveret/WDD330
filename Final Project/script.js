@@ -3,12 +3,11 @@ const monsterInput = document.getElementById("monsterInput");
 const searchButton = document.getElementById("searchButton");
 const monsterResult = document.getElementById("monsterResult");
 
-// Navigate to the saved monsters page when the "My List" button is clicked
 document.getElementById('myListButton').addEventListener('click', function() {
   window.location.href = 'saved-monsters.html';  // Navigate to the saved monsters page
 });
 
-let allMonsters = [];  // This will store the list of all monsters
+let allMonsters = [];
 
 function convertToJson(res) {
   if (res.ok) {
@@ -18,21 +17,19 @@ function convertToJson(res) {
   }
 }
 
-// Fetch and display all monsters when the page loads
 async function loadAllMonsters() {
   try {
     const response = await fetch(`${baseURL}`);
     const data = await convertToJson(response);
 
-    allMonsters = data.results;  // Store the fetched monsters
+    allMonsters = data.results;
 
-    displayMonsters(allMonsters);  // Display the monsters on the page
+    displayMonsters(allMonsters);
   } catch (error) {
     monsterResult.innerHTML = "Error: " + error.message;
   }
 }
 
-// Display a list of monsters
 function displayMonsters(monsters) {
   if (document.body.classList.contains('viewing-details')) {
   document.body.classList.remove('viewing-details');
@@ -47,7 +44,6 @@ function displayMonsters(monsters) {
   monsterResult.innerHTML = `<ul>${monsterList}</ul>`;
 }
 
-// Search monsters based on input
 async function searchMonsters(monsterName) {
   monsterResult.innerHTML = "Searching...";
 
@@ -62,10 +58,8 @@ async function searchMonsters(monsterName) {
   }
 }
 
-// Load all monsters when the page loads
 loadAllMonsters();
 
-// Search event listener
 searchButton.addEventListener("click", () => {
   const monsterName = monsterInput.value.toLowerCase();
   if (monsterName) {
@@ -75,7 +69,6 @@ searchButton.addEventListener("click", () => {
   }
 });
 
-// Show detailed information of a monster
 async function showMonsterDetails(monsterIndex) {
   const monster = allMonsters.find(m => m.index === monsterIndex);
   
@@ -87,13 +80,11 @@ async function showMonsterDetails(monsterIndex) {
   }
 }
 
-// Display detailed information of a single monster
 function displayMonsterDetails(monster) {
   document.body.classList.add('viewing-details');
   const container = document.getElementById('monsterResult');
   const saveButton = `<button id="saveMonsterButton">Save Monster</button>`;
   
-  // Add a Back to List button
   container.innerHTML = `
     <button onclick="displayMonsters(allMonsters)">Back to List</button>
     <div class="monster-header">
@@ -147,20 +138,17 @@ function displayMonsterDetails(monster) {
     ${saveButton}
   `;
 
-  // Attach event listener to Save button
   const saveMonsterButton = document.getElementById('saveMonsterButton');
   saveMonsterButton.addEventListener('click', () => saveMonsterToList(monster));
 }
 
-// Function to save monster to local storage
 function saveMonsterToList(monster) {
   let savedMonsters = JSON.parse(localStorage.getItem('savedMonsters')) || [];
   
-  // Check if the monster is already saved
   if (savedMonsters.some(saved => saved.index === monster.index)) {
     alert('This monster is already in your saved list!');
   } else {
-    savedMonsters.push(monster);  // Add the monster to the list
+    savedMonsters.push(monster);
     localStorage.setItem('savedMonsters', JSON.stringify(savedMonsters));
     alert('Monster saved to your list!');
   }
@@ -169,6 +157,5 @@ function saveMonsterToList(monster) {
 function getMonsterImageUrl(imagePath) {
   const baseImageUrl = 'https://www.dnd5eapi.co';
   
-  // If the image path is not fully qualified, prepend the base URL
   return imagePath && !imagePath.startsWith('http') ? baseImageUrl + imagePath : imagePath;
 }
