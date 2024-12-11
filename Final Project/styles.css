@@ -1,47 +1,248 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
-  
+  font-family: 'Roboto Mono', monospace; /* Default font for paragraphs */
+  background-color: #7E7F83; /* Light background color */
+  color: #1F271B; /* Dark text color */
+  line-height: 1.6;
+  padding: 0 1rem;
+  overflow-x: hidden;
+}
+
+body.viewing-details #searchSection {
+  display: none;  /* Hides the search section */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+}
+
+h1 {
+  font-family: 'Aclonica', sans-serif; /* Title font */
+  text-align: center;
+  color: #BC2C1A; /* Title color */
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Input & Button Styling */
+input[type="text"] {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 2px solid #7E7F83; /* Border color */
+  border-radius: 4px;
+  font-size: 1.1rem;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+  border-color: #BC2C1A; /* Focus color */
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #BC2C1A; /* Button color */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #732C2C; /* Hover color */
+}
+
+button:focus {
+  outline: none;
+}
+
+/* Monster Results Styling */
+.monster-result {
+  margin-top: 2rem;
+}
+
+.monster-item {
+  background-color: #F2E9E4; /* Monster item background color */
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.monster-item h2 {
+  font-family: 'Aclonica', sans-serif; /* Title font */
+  color: #732C2C; /* Monster name color */
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.monster-item p {
+  font-family: 'Roboto Mono', monospace; /* Paragraph font */
+  font-size: 1.1rem;
+  color: #1F271B;
+}
+
+.monster-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.monster-header img {
+  border-radius: 8px;
+  width: 150px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.stat-item {
+  margin-bottom: 0.5rem;
+}
+
+.stat-item span {
+  font-weight: bold;
+  color: #BC2C1A; /* Stat name color */
+}
+
+.stat-item .value {
+  color: #1F271B; /* Stat value color */
+}
+
+.special-abilities,
+.actions,
+.legendary-actions {
+  margin-top: 2rem;
+}
+
+h3 {
+  font-family: 'Aclonica', sans-serif; /* Title font */
+  color: #732C2C; /* Header color */
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+ul {
+  list-style-type: none;
+}
+
+ul li {
+  background-color: #F2E9E4; /* List item background color */
+  padding: 0.8rem;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+ul li strong {
+  color: #1F271B; /* Strong text color */
+}
+
+/* Ensure the "My List" button is fixed to the top right */
+.my-list-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #BC2C1A; /* Use the color you specified */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: 'Roboto Mono', monospace;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  width: auto;  /* Ensure button doesn't stretch */
+  height: auto; /* Ensure button doesn't stretch */
+  text-align: center;  /* Align text in the center */
+  transition: background-color 0.3s;
+}
+
+.my-list-button:hover {
+  background-color: #732C2C; /* Darker shade for hover effect */
+}
+
+/* Optional: Adding some margin to the container to avoid overlap */
+.container {
+  margin-top: 60px; /* Space to account for the fixed button */
+}
+
+.remove-from-list-button {
+  width: auto; /* This ensures the button width is based on its content */
+  padding: 8px 16px; /* You can adjust padding to control button size */
+  font-size: 1rem; /* Adjust the font size as needed */
+  margin-left: 20px;
+}
+
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
   .container {
-    background-color: white;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
+    padding: 1.5rem;
   }
-  
+
   h1 {
-    color: #333;
+    font-size: 2rem;
   }
-  
-  #monsterInput {
+
+  .monster-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .monster-header img {
+    width: 120px;
+    margin-bottom: 1rem;
+  }
+
+  .monster-item {
+    padding: 1rem;
+  }
+
+  input[type="text"],
+  button {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
   }
-  
-  #searchButton {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 12px;
-    cursor: pointer;
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
   }
-  
-  .monster-result {
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    text-align: left;
+
+  .monster-item {
+    padding: 0.8rem;
   }
+
+  .monster-item h2 {
+    font-size: 1.5rem;
+  }
+
+  .stat-item span,
+  .stat-item .value {
+    font-size: 1rem;
+  }
+
+  ul li {
+    padding: 0.6rem;
+  }
+
+  .monster-header img {
+    width: 100px;
+  }
+}
