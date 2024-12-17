@@ -19,3 +19,4 @@ function doStuff(data) {
     document.querySelector('main').appendChild(div);
 });
 }
+getPokemon(url);
