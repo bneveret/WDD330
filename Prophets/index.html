@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prophet Cards</title>
+  <style>
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+    .profile {
+      border-radius: 5px;
+      width: 100%;
+      height: auto;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cards-container" id="prophet-container"></div>
+
+  <template id="prophet-card">
+    <section class="card">
+      <h2></h2>
+      <p></p>
+      <p></p>
+      <img class="profile" src="" alt="" loading="lazy" width="200" height="300">
+    </section>
+  </template>
+
+  <script>
+    // Link to the JSON file
+    const jsonURL = 'https://brotherblazzard.github.io/canvas-content/latter-day-prophets.json';
+
+    // Get the container where prophet cards will be displayed
+    const container = document.getElementById("prophet-container");
+
+    // Get the template
+    const template = document.getElementById("prophet-card");
+
+    // Fetch the JSON data from the URL
+    fetch(jsonURL)
+      .then(response => response.json())
+      .then(data => {
+        // Loop through each prophet in the fetched data
+        data.prophets.forEach(prophet => {
+          // Clone the template content
+          const card = template.content.cloneNode(true);
+
+          // Populate the card with prophet data
+          card.querySelector("h2").textContent = `${prophet.name} ${prophet.lastname}`;
+          card.querySelector("p:nth-of-type(1)").textContent = `Born: ${prophet.birthdate}`;
+          card.querySelector("p:nth-of-type(2)").textContent = `Died: ${prophet.death ? prophet.death : "Still alive"}`;
+          card.querySelector("img").src = prophet.imageurl;
+          card.querySelector("img").alt = `${prophet.name} ${prophet.lastname}`;
+
+          // Append the populated card to the container
+          container.appendChild(card);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching JSON data:', error);
+      });
+  </script>
+</body>
+</html>
