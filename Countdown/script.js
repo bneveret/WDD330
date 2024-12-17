@@ -78,6 +78,8 @@ function resetCountdown() {
     startButton.disabled = false; // Enable the start button
     pauseResumeButton.disabled = true; // Disable the pause/resume button
     resetButton.disabled = true; // Disable the reset button
+    pauseResumeButton.textContent = "Pause";
+    isPaused = false;
 }
 
 // Event listeners
