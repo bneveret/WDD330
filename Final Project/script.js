@@ -3,6 +3,13 @@ const monsterInput = document.getElementById("monsterInput");
 const searchButton = document.getElementById("searchButton");
 const monsterResult = document.getElementById("monsterResult");
 
+monsterInput.addEventListener('keypress', (event) => {
+  if (event.key === 'Enter') {
+    searchButton.click();  // Trigger the search button click event
+  }
+});
+
+
 document.getElementById('myListButton').addEventListener('click', function() {
   window.location.href = 'saved-monsters.html';  // Navigate to the saved monsters page
 });
