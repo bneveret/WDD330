@@ -11,7 +11,7 @@ monsterInput.addEventListener('keypress', (event) => {
 
 
 document.getElementById('myListButton').addEventListener('click', function() {
-  window.location.href = 'saved-monsters.html';  // Navigate to the saved monsters page
+  window.location.href = 'saved-monsters.html';
 });
 
 let allMonsters = [];
